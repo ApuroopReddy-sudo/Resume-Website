@@ -1,0 +1,169 @@
+/* Colours and spacing: every colour and gap used below is defined here once */
+:root {
+  --cream: #FBF6EA;
+  --white: #FFFFFF;
+  --ink: #1F1A17;
+  --muted: #5A4F47;
+  --sand: #E4DAC6;
+  --accent: #B3261E;
+  --s1: 8px;
+  --s2: 24px;
+  --s3: 40px;
+  --edge: 24px;
+}
+
+/* Page base: body text, headings, links and visible keyboard focus */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "DM Sans", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, serif;
+  line-height: 1.2;
+  margin: var(--s3) 0 var(--s1);
+}
+h1 { font-size: 3.5rem; margin-top: 0; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.25rem; margin: 0 0 var(--s1); }
+p, li { max-width: 68ch; }
+p { margin: 0 0 var(--s2); }
+a { color: var(--accent); }
+a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* Layout: every section sits in one centred column with the same spacing */
+main { max-width: 960px; margin: 0 auto; padding: 0 var(--edge); }
+section { padding: var(--s3) 0; }
+section > h2 { margin-top: 0; }
+#work, #leadership, #education, #resume, #contact { scroll-margin-top: 64px; }
+
+/* Navigation bar: sticky flexbox bar with the name on the left, links and Email button on the right */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s1);
+  padding: var(--s1) var(--edge);
+  background: var(--cream);
+  border-bottom: 1px solid var(--sand);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1); }
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--s1);
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-link:hover { color: var(--accent); }
+
+/* Buttons: one style for every call to action; hover only changes colour */
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--s2);
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  color: var(--white);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.button:hover { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+.button-outline { background: transparent; color: var(--accent); }
+.actions { display: flex; flex-wrap: wrap; gap: var(--s1); }
+
+/* Hero (#hero): your name, your sentence, what you want, and the main button */
+#hero { padding: 64px 0 var(--s3); }
+.lead {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.75rem;
+  line-height: 1.35;
+}
+
+/* Cards (.card): flat boxes with a thin full outline, laid out in a two-column grid */
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s2); }
+.wide { grid-column: 1 / -1; }
+.card { border: 1px solid var(--sand); padding: var(--s2); }
+.meta { margin: 0 0 var(--s2); color: var(--muted); font-size: 0.95rem; }
+ul { margin: 0; padding-left: 20px; }
+li { margin-bottom: var(--s1); }
+.plain { list-style: none; padding: 0; }
+
+/* Education and contact (#education, #contact): plain lists and the contact buttons */
+#education h3 { margin-top: var(--s2); }
+#contact { padding-bottom: 64px; }
+
+/* Resume (#resume): a white A4-style sheet with a thin outline, plus the download button above it */
+.download { margin-bottom: var(--s2); }
+.sheet {
+  max-width: 794px;
+  padding: 48px;
+  background: var(--white);
+  border: 1px solid var(--sand);
+  font-size: 15px;
+  line-height: 1.45;
+}
+.sheet h1 { font-size: 1.8rem; margin: 0 0 var(--s1); }
+.sheet h2 {
+  margin: var(--s2) 0 var(--s1);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--sand);
+  font-size: 1.1rem;
+}
+.sheet h3 { display: inline; font-size: 1rem; }
+.sheet .meta { display: inline; margin: 0 0 0 var(--s1); font-size: inherit; }
+.sheet p, .sheet li { max-width: none; margin: 0 0 4px; }
+.sheet ul { margin: 4px 0 var(--s1); padding-left: 18px; }
+
+/* Phones: screens narrower than 700px get one column, smaller type and 16px edges */
+@media (max-width: 699px) {
+  body { font-size: 17px; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.8rem; }
+  .lead { font-size: 1.4rem; }
+  main { padding: 0 16px; }
+  .navbar { padding: var(--s1) 16px; }
+  .grid { grid-template-columns: 1fr; }
+  .sheet { padding: var(--s2) 16px; }
+}
+
+/* Print: only the resume, on one A4 page, black text on white */
+@page { size: A4; margin: 10mm; }
+@media print {
+  :root { --cream: #fff; --ink: #000; --muted: #000; --accent: #000; --sand: #000; }
+  .navbar, #hero, #work, #leadership, #education, #contact, .download, #resume > h2 { display: none; }
+  body { font-size: 9pt; line-height: 1.28; }
+  main { max-width: none; padding: 0; }
+  #resume { padding: 0; }
+  .sheet { max-width: none; padding: 0; border: 0; font-size: 9pt; }
+  .sheet h1 { font-size: 16pt; }
+  .sheet h2 { margin-top: 6pt; font-size: 10.5pt; }
+  .sheet a { text-decoration: none; }
+}
+
+/* Reduced motion: switch off the hover colour fade for people who ask for it */
+@media (prefers-reduced-motion: reduce) {
+  .button { transition: none; }
+}
